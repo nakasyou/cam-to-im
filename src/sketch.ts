@@ -44,7 +44,7 @@ export const draw = () => {
   for (const RECT of [20, 40, 80]) {
     for (let x = 0; x < width; x += RECT) {
       for (let y = 0; y < height; y += RECT) {
-        if (Math.random() < 0.5) {
+        if (Math.random() < 0.5 && rectI !== 0) {
           continue
         }
         const { r, g, b } = getRGB(x + RECT / 2, y + RECT / 2)
