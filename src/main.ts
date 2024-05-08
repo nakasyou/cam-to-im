@@ -34,7 +34,7 @@ if (import.meta.hot) {
   import.meta.hot.accept('./sketch', (newMod) => {
     if (newMod) {
       if (oldSetupFnString && oldSetupFnString !== newMod.setup.toString()) {
-        pContext.setup = newMod.setup
+        location.reload()
       }
       if (oldDataJson && oldDataJson !== JSON.stringify(newMod.data)) {
       } else {
