@@ -10,9 +10,11 @@ export const setup = () => {
     VIDEO
   )
 
-  frameRate(2)
+  frameRate(1)
 }
-
+document.onclick = () => {
+  saveCanvas()
+}
 export const data = {
   x: 1
 }
@@ -39,18 +41,20 @@ export const draw = () => {
   image(capture.get(), 0, 0)
 
   let rectI = 0
-  for (const RECT of [40, 80, 160]) {
+  for (const RECT of [20, 40, 80]) {
     for (let x = 0; x < width; x += RECT) {
       for (let y = 0; y < height; y += RECT) {
-        if (Math.random() < 0.5 && rectI !== 0) {
+        if (Math.random() < 0.5) {
           continue
         }
-        noStroke()
-        fill(0, 0, 0)
-    rect(x, y, RECT, RECT)
-
-        const shape = Math.random()
         const { r, g, b } = getRGB(x + RECT / 2, y + RECT / 2)
+        noStroke()
+        fill('black')
+        rect(x, y, RECT, RECT)
+
+        set(x, y, [r, g, b, color(r, g, b)])
+        const shape = Math.random()
+        //console.log(r, g, b)
         fill(r, g, b)
 
         if (shape < 0.3 || rectI === 0) {
@@ -61,7 +65,7 @@ export const draw = () => {
           triangle(x, y, x + RECT, y, x, y + RECT)
         } else {
           // Circle
-          circle(x, y, RECT / 2)
+          circle(x + RECT / 2, y + RECT / 2, RECT)
         }
       }
     }
